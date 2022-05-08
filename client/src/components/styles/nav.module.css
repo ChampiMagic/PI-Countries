@@ -1,0 +1,25 @@
+.nav {
+  width: 100vw;
+  height: 4em;
+  display: flex;
+  justify-content: space-around;
+  align-items:center;
+  background: rgba(190, 190, 190, 0.32);
+  color:white;
+}
+
+.nav > a {
+  flex-grow: 1;
+}
+
+.filters_container {
+  flex-grow: 1;
+  display: flex;
+}
+
+.form {
+  flex-grow: 1;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
