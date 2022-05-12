@@ -2,7 +2,9 @@ const defaultState = {
   loading: false,
   ternary: true,
   countries: [],
+  activities: [],
   showedCountries: [],
+  currentPage: 1,
 }
 
 export default function rootReducer(state = defaultState, action)  {
@@ -17,10 +19,25 @@ export default function rootReducer(state = defaultState, action)  {
         ...state,
         loading: false
       }
-    case "SET":
+    case "SETPAGE":
+      return {
+        ...state,
+        currentPage: action.payload 
+      }
+    case "CHANGETERNARY":
+      return {
+        ...state,
+        ternary: action.payload
+      }
+    case "SETCOUNTRIES":
       return {
         ...state,
         countries: action.payload
+      }
+    case "SETACTIVITIES":
+      return {
+        ...state,
+        activities: action.payload
       }
     case "SETSHOWED":
       return {

@@ -1,0 +1,66 @@
+.card_container {
+  width: 240px;
+  height: 240px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(184, 184, 184, 0.44);
+  outline: solid 1px #FFD700;
+  transition: all 500ms ease-out;
+}
+
+
+.card_container > figure {
+  width: 100%;
+  height:55%;
+  overflow: hidden;
+  outline: solid 1px #000;
+}
+
+.card_container > figure > img {
+  width: 100%;
+  height: 100%;
+  opacity: .8;
+  transition: all 500ms ease-out;
+}
+
+.card_container figure .capa {
+  position: relative;
+  top: -135px;
+  width: 100%;
+  height: 100%;
+  transition: all 500ms ease-out;
+  opacity: 0;
+  visibility: hidden;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card_container > h3 {
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 750ms all 100ms ease-out;
+}
+
+.card_container:hover h3 {
+  opacity: 1;
+  visibility: visible;
+}
+
+.card_container:hover figure > .capa{
+  opacity: 1;
+  visibility: visible;
+}
+
+.card_container:hover  figure > img {
+  opacity: 1;
+}
+
+.card_container:hover {
+  width: 256px;
+  height: 256px;
+  box-shadow: 0 0 15px 2px rgb(246, 246, 246);
+}

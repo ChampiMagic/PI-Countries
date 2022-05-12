@@ -1,0 +1,39 @@
+.article {
+  grid-column: 2 / 8;
+  grid-row: 2 / 10;
+  background-color: transparent;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  padding: 1em;
+  gap: 6em;
+}
+
+.cards_container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  gap: 1em;
+}
+
+.cards_container > a {
+  color: #000;
+  text-decoration: none;
+}
+
+.cards_container > a:visited {
+  color: #000;
+}
+
+.delay {
+  width: 100%;
+  font-size: 45px;
+  text-align: center;
+  height: 77.17%;
+  padding: 10%;
+  color: #fff;
+  font-weight: bold;
+}

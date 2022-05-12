@@ -1,0 +1,148 @@
+.heigthContainer {
+  width:100vw;
+  height: 100vh;
+  display:flex;
+  flex-wrap: wrap;
+  align-content: center;
+  background-image:url("https://free4kwallpapers.com/uploads/originals/2016/02/10/world-map-typography-wallpaper.jpg");
+  background-size: 100% 100%;
+  gap: 5em;
+}
+
+.goBack {
+  position: absolute;
+  top: 3em;
+  left: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.goBack:visited {
+  color: #fff;
+}
+
+.goBack_icon {
+  font-size: 70px;
+  transition: 250ms ease-in;
+}
+
+.goBack:hover .goBack_icon {
+  color: #48caeb;
+  filter: drop-shadow(0 0 15px #48caeb) drop-shadow(0 0 15px #48caeb);
+}
+
+.img_container {
+  width: 100%;
+  height: 10em;
+  display: flex;
+  align-items: center;
+  padding: 0 3em;
+}
+
+.img_container > img {
+  width: 100px;
+  height: 100px;
+  background: red;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.img_container > h1 {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: 70px;
+}
+
+
+.details_container {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 3em;
+  gap: 3em;
+}
+
+.country_details {
+  background-color: rgba(83, 80, 80, 0.73);
+  flex-grow: 2;
+  min-width: 50%;
+  min-height: 250px;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  color: rgb(255, 255, 255);
+  font-weight: lighter;
+  letter-spacing: 1px;
+}
+
+.country_details > h2 {
+  width: 100%;
+}
+
+.country_details > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.country_details > div > p:last-child {
+  font-weight:bold;
+}
+
+
+.activities_container {
+  flex-grow: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: rgba(83, 80, 80, 0.73);
+  border-radius: 10px;
+  min-width: 50%;
+  min-height: 250px;
+  padding: 5px 20px;
+}
+
+.activities_container > h2 {
+  width: 100%;
+  color: rgb(255, 255, 255);
+  border-bottom: solid #fff 1px;
+}
+
+
+.activities_detail_container {
+  width: 100%;
+  color: rgb(255, 255, 255);
+  font-weight: lighter;
+  letter-spacing: 1px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.activities_detail {
+  width: 45%;
+  color: rgb(255, 255, 255);
+  font-weight: lighter;
+  letter-spacing: 1px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+
+
+.activities_detail > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.activities_detail > div > p:last-child {
+  font-weight: bold;
+}

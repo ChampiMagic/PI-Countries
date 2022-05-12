@@ -5,7 +5,9 @@ const { Country, Activity } = require('../db.js');
 const router = Router();
 
 async function DB() {
-  return await Country.findAll();
+  return await Country.findAll({
+    include: Activity,
+  });
 }
 
 
@@ -17,12 +19,18 @@ if(name){
 
   const allCountries = await DB();
   const reqCountries = allCountries.filter( country => country.name.includes(name) )
-  res.status(200).send(reqCountries);
+  if(reqCountries.length){
+    res.status(200).send(reqCountries);
+  } else {
+    res.status(404).send("Not Found");
+  }
+
 
 } else {
   try {
 
     const countries = await DB();
+
     res.status(200).send(countries);
 
   }catch(err) {
