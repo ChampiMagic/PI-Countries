@@ -5,10 +5,12 @@ import style from './styles/home.module.css';
 
 export default function Home() {
 return (
-  <div className={style.home}>
-    <Nav />
-    <Aside />
-    <Article />
+  <div className={style.heightContainer}>
+    <div className={style.home}>
+      <Nav />
+      <Aside />
+      <Article />
+    </div>
   </div>
 )
 }

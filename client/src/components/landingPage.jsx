@@ -1,5 +1,5 @@
 import style from './styles/landing.module.css';
-import { IoAirplaneSharp } from 'react-icons/io5';
+//import { IoAirplaneSharp } from 'react-icons/io5';
 import { useState, useEffect } from 'react';
 
 
@@ -16,15 +16,15 @@ const delay = () => {
 
 
   return (
-    <div className={style.hightContainer}>
+    <div  className={style.hightContainer}>
 
-        <label onClick={() => delay()} className={style.button_container}>
+        <label data-testid="landing_button" onClick={() => delay()} className={style.button_container}>
               <input type="checkbox" ></input>
               <p className={style.title}>TAKE OFF</p>
               <div className={style.icon}>
                   <div className={style.shadow}></div>
                   <div className={style.iconBox}>
-                      <IoAirplaneSharp className={style.plane_icon}/>
+                      <div className={style.plane_icon}></div>
                   </div>
               </div>
         </label>

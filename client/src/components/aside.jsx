@@ -6,105 +6,65 @@ import { setShowed } from '../store/actions.js';
 
 export default function Aside() {
 
-  const dispatch = useDispatch();
+  const continents = ["South America", "North America", "Asia", "Africa", "Europe", "Antarctica", "Oceania"]
 
+  const dispatch = useDispatch();
   const activities = useSelector( (state) => state.activities);
   const showedCountries = useSelector( (state) => state.showedCountries);
   const countries = useSelector( (state) => state.countries);
 
-//filter START
-const filters = (event) => {
+//filter
+const filter = () => {
+  const inputsRadio = [...document.getElementsByName("activity")];
+  const trueInputsR = inputsRadio.filter( (e) => e.checked === true);
+  const inputsCheckbox = [...document.getElementsByName("continent")];
+  const trueInputsC = inputsCheckbox.filter( (e) => e.checked === true);
 
-    const cInputs = [...document.getElementsByName('continent')]
-    const cInputsBoolean = cInputs.map( i => i.checked);
-    const aInputs = [...document.getElementsByName('activity')]
-    const aInputsBoolean = aInputs.map( i => i.checked);
-      const inputsBoolean = [...cInputsBoolean, ...aInputsBoolean]
+  if(trueInputsR[0].value === "all" && !trueInputsC.length) {
 
-  if(event.target.name === 'continent') {
-    if(event.target.checked) {
+      dispatch(setShowed(countries));
+      dispatch(setCurrentPage(1));
 
-      let tempArr;
-      if(aInputsBoolean.includes(true) || (aInputsBoolean.includes(true) && cInputsBoolean.includes(true))) {
-        tempArr = (showedCountries.filter( (c) => c.continent === event.target.value));
-      } else {
-        tempArr = (countries.filter( (c) => c.continent === event.target.value));
+  } else if(trueInputsR[0].value === "all" && trueInputsC.length) {
+
+      const countriesToShow = countries.filter( c => {
+        for(const element of trueInputsC) {
+          if(element.value === c.continent) return true;
+        }
+      })
+      dispatch(setShowed(countriesToShow));
+      dispatch(setCurrentPage(1));
+
+  } else if(trueInputsR[0].value !== "all" && !trueInputsC.length) {
+
+    const countriesToShow = countries.filter( c => {
+      for(const activity of c.Activities) {
+        if(activity.name === trueInputsR[0].value) return true;
       }
+    })
+    dispatch(setShowed(countriesToShow));
+    dispatch(setCurrentPage(1));
 
+  } else if(trueInputsR[0].value !== "all" && trueInputsC.length) {
 
-      if(tempArr.length){
-        dispatch(setCurrentPage(1))
-        dispatch(setShowed(tempArr))
-      } else {
-        event.target.checked = false;
+    const countriesForContinent = countries.filter( c => {
+      for(const element of trueInputsC) {
+        if(element.value === c.continent) return true;
       }
-    } else if(!event.target.checked) {
-      if(inputsBoolean.includes(true)){
-
-        if(inputsBoolean.includes(true)){
-          const specific = aInputs.filter( i => i.checked === true);
-            specific.target = specific['0']
-            filters(specific);
-          }
-
-      } else {
-        dispatch(setCurrentPage(1))
-        dispatch(setShowed(countries))
+    })
+    const countriesToShow = countriesForContinent.filter( c => {
+      for(const activity of c.Activities) {
+        if(activity.name === trueInputsR[0].value) return true;
       }
-
-    }
-  } else if (event.target.name === 'activity'){
-    if(event.target.checked) {
-
-      let tempArr;
-      if(cInputsBoolean.includes(true) || (aInputsBoolean.includes(true) && cInputsBoolean.includes(true)) ) {
-        tempArr = (showedCountries.filter( (c) => {
-
-          for(let i = 0; i < c.Activities.length; i++) {
-            return c.Activities[i].name === event.target.value
-          }
-
-
-        }));
-
-      } else {
-        tempArr = (countries.filter( (c) => {
-
-          for(let i = 0; i < c.Activities.length; i++) {
-            return c.Activities[i].name === event.target.value
-          }
-
-
-        }));
-      }
-
-      if(tempArr.length){
-        dispatch(setCurrentPage(1))
-        dispatch(setShowed(tempArr))
-      } else {
-        event.target.checked = false;
-      }
-    } else if(!event.target.checked ) {
-      if(inputsBoolean.includes(true)){
-        const specific = cInputs.filter( i => i.checked === true);
-          specific.target = specific['0']
-          filters(specific);
-
-
-      } else {
-        dispatch(setCurrentPage(1))
-        dispatch(setShowed(countries))
-      }
-    }
-  }
-
-
+    })
+    dispatch(setShowed(countriesToShow));
+    dispatch(setCurrentPage(1));
 
   }
-//filters END
+}
 
 
-
+//Funcion para que no se repitan las actividades
 const uniqueArr = [];
 activities.forEach((item)=>{
     	//pushes only unique element
@@ -112,7 +72,10 @@ activities.forEach((item)=>{
     		uniqueArr.push(item.name);
     	}
     })
+//solo renderizo las primeras 21
+const activitiesArr = uniqueArr.slice(0, 20);
 
+//llamamos al action que cargara las actividades
 useEffect(() => {
 
   dispatch(getActivities());
@@ -120,48 +83,36 @@ useEffect(() => {
 
 }, [dispatch])
 
+const c = countries.filter( c => {
+  const showed = showedCountries.map( c => c.name);
+  if(!showed.includes(c.name)) return true
+})
+//console.log(c);
+
 
   return (
-    <div onChange={(e) => filters(e)} className={style.aside_container}>
+    <div  onChange={() => filter()}className={style.aside_container}>
       <div>
         <h4 className={style.subTitle}>Countries:</h4>
         <div className={style.options_container}>
-          <div className={style.option}>
-            <input  value="South America" name="continent" type="checkbox"></input>
-            <label>America del Sur</label>
-          </div>
-          <div className={style.option}>
-            <input value="North America" name="continent" type="checkbox"></input>
-            <label>America del Norte</label>
-          </div>
-          <div className={style.option}>
-            <input  value="Asia" name="continent" type="checkbox"></input>
-            <label>Asia</label>
-          </div>
-          <div className={style.option}>
-            <input  value="Africa" name="continent" type="checkbox"></input>
-            <label>Africa</label>
-          </div>
-          <div className={style.option}>
-            <input  value="Oceania" name="continent" type="checkbox"></input>
-            <label>Oceania</label>
-          </div>
-          <div className={style.option}>
-            <input  value="Europe" name="continent" type="checkbox"></input>
-            <label>Europa</label>
-          </div>
-          <div className={style.option}>
-            <input  value="Antarctica"  name="continent" type="checkbox"></input>
-            <label>Antartida</label>
-          </div>
+          {continents.map(c => (
+            <div key={c} className={style.option}>
+              <input  value={c} name="continent" type="checkbox"></input>
+              <label>{c}</label>
+            </div>
+          ))}
         </div>
       </div>
       <div>
         <h4 className={style.subTitle}>Activities:</h4>
         <div  className={style.options_container}>
-          {uniqueArr.map((a) => (
+              <div  className={style.option}>
+                <input type="radio" value="all"  name="activity" defaultChecked></input>
+                <label>all</label>
+              </div>
+          {activitiesArr.map((a) => (
             <div key={a} className={style.option}>
-              <input type="checkbox" value={a}  name="activity"></input>
+              <input type="radio" value={a}  name="activity"></input>
               <label>{a}</label>
             </div>
             ))}

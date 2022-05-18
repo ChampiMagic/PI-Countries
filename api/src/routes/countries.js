@@ -34,7 +34,7 @@ if(name){
     res.status(200).send(countries);
 
   }catch(err) {
-    console.log(err)
+    res.send(err);
   }
 
 }
@@ -53,10 +53,13 @@ router.get('/:code',  async (req, res) => {
         },
         include: Activity,
       })
-    res.send(country);
+      if(country){
+          res.status(200).send(country);
+      } else {res.status(404).send("Not Found")}
+
 
   }catch(err) {
-    console.log(err)
+    res.statusCode(404).send(err.errors[0].message);
   }
 
 

@@ -1,10 +1,16 @@
-.home {
+.heightContainer {
   width: 100vw;
   height: 100%;
-  /*background-image: url("https://free4kwallpapers.com/uploads/originals/2016/02/10/world-map-typography-wallpaper.jpg");*/
-  background-image: url("../../img/landingBackground.jpg");
+  background-image: url("https://wallpaperbat.com/img/173641-world-map-background-hd.gif");
+  /*background-image: url("../../img/landingBackground.jpg");*/
   background-size: 100% 100%;
+}
+
+.home {
+  width: 100%;
+  height:100%;
   display: grid;
   grid-template-columns: repeat(7, minmax(150px, 1fr));
-  grid-template-rows: repeat(9, minmax(84.4px, 1fr))
+  grid-template-rows: repeat(9, minmax(84.4px, 1fr));
+  background-color: rgba(0, 0, 0, 0.5);
 }

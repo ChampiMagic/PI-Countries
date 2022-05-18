@@ -1,6 +1,6 @@
 import style from './styles/form.module.css';
 import { useSelector} from 'react-redux';
-import { TiArrowBack } from "react-icons/ti";
+//import { TiArrowBack } from "react-icons/ti";
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
@@ -11,7 +11,7 @@ const validator = (input, pushCountries) => {
 
   if(!input.name){
     error.name = "name is required";
-  } else if (!/^[\w -]+$/.test(input.name)){
+  } else if (!/^[\w ]{1,18}$/.test(input.name)){
     error.name = "name is invalid";
   }
 
@@ -41,15 +41,18 @@ const validator = (input, pushCountries) => {
 
 export default function Form() {
 
-  const countries = useSelector( (state) => state.countries);
+  const countriesData = useSelector( (state) => state.countries);
+  const countries = countriesData.filter( c => {
+    if(c.Activities.length !== undefined && c.Activities.length < 6) return true
+  })
+
+
   const [currentCountries, setCurrentCountries] = useState([])
   const [selectedCountries, setSelectedCountries] = useState([])
   const [pushCountries, setPushCountries] = useState([]);
 
 
-  const [input, setInput] = useState({
-
-  });
+  const [input, setInput] = useState({});
   const [error, setError] = useState({});
 
   const workOnChange = (event) => {
@@ -145,7 +148,7 @@ const temporadas = ["Primavera", "Verano", "Otoño", "Invierno"];
   return (
     <div className={style.hightContainer}>
       <Link to="/home" className={style.goBack}>
-        <TiArrowBack className={style.goBack_icon}/>
+        <div className={style.goBack_icon}></div>
       </Link>
       <div className={style.form_container}>
         <h1 className={style.title}>Agregar Actividades:</h1>

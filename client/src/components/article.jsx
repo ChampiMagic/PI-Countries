@@ -36,7 +36,15 @@ export default function Article() {
 }, 250)
   }
 
-
+if(!showedCountries.length) {
+  return (
+    <div className={style.notFound}>
+      <div className={style.notFound_constainer}>
+        <p>Not Found</p>
+      </div>
+    </div>
+  )
+}
 
   return (
       <div className={style.article}>
@@ -44,13 +52,13 @@ export default function Article() {
         <div className={style.cards_container}>
           {currentCards?.map( c => (
           <Link key={c.name} to={`/home/${c.id}`}>
-            <Card key={c.id} name={c.name} continent={c.continent} image={c.flag}/>
+            <Card key={c.id} name={c.name} continent={c.continent} image={c.flag} population={c.population}/>
           </Link>
           ))}
         </div>
       }
 
-        <Paginated changer={changePage} allCards={showedCountries.length} cardsPerPages={cardsPerPages}/>
+        <Paginated changer={changePage} allCards={showedCountries.length} cardsPerPages={cardsPerPages} currentPage={currentPage}/>
       </div>
   )
 }

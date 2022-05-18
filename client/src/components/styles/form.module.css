@@ -21,13 +21,53 @@
 }
 
 .goBack_icon {
+box-sizing: border-box;
+position: relative;
+display: block;
+width: 44px;
+height: 44px;
+border: 4px solid;
+transform: scale(var(--ggs,1));
+border-radius: 22px
+}
+
+.goBack_icon::after,
+.goBack_icon::before {
+content: "";
+display: block;
+box-sizing: border-box;
+position: absolute;
+left: 8px
+}
+
+.goBack_icon::after {
+width: 12px;
+height: 12px;
+border-bottom: 4px solid;
+border-left: 4px solid;
+transform: rotate(45deg);
+bottom: 12px
+}
+
+.goBack_icon::before {
+width: 20px;
+height: 4px;
+bottom: 16px;
+background: currentColor
+}
+
+.goBack_icon {
+  transition: 250ms ease-in;
+}
+
+.goBack_icon {
   font-size: 70px;
   transition: 250ms ease-in;
 }
 
 .goBack:hover .goBack_icon {
-  color: #48caeb;
-  filter: drop-shadow(0 0 15px #48caeb) drop-shadow(0 0 15px #48caeb);
+  color: #ffe200;
+  filter: drop-shadow(0 0 15px #ffe200) drop-shadow(0 0 15px #ffe200);
 }
 
 .form_container {

@@ -1,17 +1,25 @@
 .heigthContainer {
   width:100vw;
   height: 100vh;
+  background-image:url("https://free4kwallpapers.com/uploads/originals/2016/02/10/world-map-typography-wallpaper.jpg");
+  background-size: 100% 100%;
+}
+
+.lowContainer {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
   display:flex;
   flex-wrap: wrap;
   align-content: center;
-  background-image:url("https://free4kwallpapers.com/uploads/originals/2016/02/10/world-map-typography-wallpaper.jpg");
-  background-size: 100% 100%;
   gap: 5em;
 }
 
+
+
 .goBack {
   position: absolute;
-  top: 3em;
+  top: 0.5em;
   left: 3em;
   display: flex;
   justify-content: center;
@@ -24,13 +32,48 @@
 }
 
 .goBack_icon {
-  font-size: 70px;
+box-sizing: border-box;
+position: relative;
+display: block;
+width: 44px;
+height: 44px;
+border: 4px solid;
+transform: scale(var(--ggs,1));
+border-radius: 22px
+}
+
+.goBack_icon::after,
+.goBack_icon::before {
+content: "";
+display: block;
+box-sizing: border-box;
+position: absolute;
+left: 8px
+}
+
+.goBack_icon::after {
+width: 12px;
+height: 12px;
+border-bottom: 4px solid;
+border-left: 4px solid;
+transform: rotate(45deg);
+bottom: 12px
+}
+
+.goBack_icon::before {
+width: 20px;
+height: 4px;
+bottom: 16px;
+background: currentColor
+}
+
+.goBack_icon {
   transition: 250ms ease-in;
 }
 
 .goBack:hover .goBack_icon {
-  color: #48caeb;
-  filter: drop-shadow(0 0 15px #48caeb) drop-shadow(0 0 15px #48caeb);
+  color: #ffe200;
+  filter: drop-shadow(0 0 15px #ffe200) drop-shadow(0 0 15px #ffe200);
 }
 
 .img_container {
@@ -145,4 +188,15 @@
 
 .activities_detail > div > p:last-child {
   font-weight: bold;
+}
+
+.notFound {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:90%;
+  font-size: 25px;
+  color: #fff;
+  font-weight: lighter;
 }

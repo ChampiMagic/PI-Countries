@@ -15,10 +15,10 @@ router.get('/', async (req, res) => {
 
       const activities = await DB();
 
-     res.status(201).send(activities);
+     res.status(200).send(activities);
 
   } catch(err){
-    console.log(err);
+    res.send(err);
   }
 
 
@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
 
     res.status(201).send(activity);
   } catch(err){
-    console.log(err);
+    res.status(400).send(err.errors[0].message);
   }
 
 

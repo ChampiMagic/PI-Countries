@@ -1,6 +1,6 @@
 import style from './styles/card.module.css';
 
-export default function Card({name, continent, image}) {
+export default function Card({name, continent, image, population}) {
 
 
   return (
@@ -14,6 +14,7 @@ export default function Card({name, continent, image}) {
     </figure>
 
     <h3>{continent}</h3>
+    <h3>Poblacion: {population}</h3>
 
     </div>
   )

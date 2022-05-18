@@ -37,3 +37,22 @@
   color: #fff;
   font-weight: bold;
 }
+
+.notFound {
+  grid-column: 2 / 8;
+  grid-row: 2 / 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notFound_constainer {
+  outline: 1px solid #000;
+  padding: 1em;
+}
+
+.notFound_constainer > p {
+  font-size: 55px;
+  letter-spacing: 5px;
+  font-weight: lighter;
+}

@@ -9,15 +9,19 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     difficulty: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     duration: {
       type: DataTypes.TEXT,
+      allowNull: false,
     },
     season: {
       type:DataTypes.ENUM('Verano', 'Otoño', 'Invierno', 'Primavera'),
+      allowNull: false,
     }
 
   }, {

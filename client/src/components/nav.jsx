@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import style from './styles/nav.module.css';
-import { TiArrowBack } from "react-icons/ti";
-import { MdTravelExplore } from "react-icons/md";
-import { FaFly } from "react-icons/fa";
+//import { TiArrowBack } from "react-icons/ti";
+//import { MdTravelExplore } from "react-icons/md";
+//import { FaFly } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
-import { setShowed, changeTernary } from '../store/actions.js';
+import { setShowed, changeTernary, setCurrentPage } from '../store/actions.js';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -23,8 +23,24 @@ export default function Nav() {
   const temporal = showedCountries;
     if(ternary){
       temporal.sort((a, b) => {
-        let aT = a.name.toLowerCase();
-        let bT = b.name.toLowerCase();
+
+        let aT = "";
+        let bT = "";
+
+        if(a.name.includes('Å')) {
+          let T = a.name.replace('Å', 'A')
+          aT = T.toLowerCase();
+        } else {aT = a.name.toLowerCase()}
+
+        if(b.name.includes("Å")) {
+          let T = b.name.replace('Å', 'A')
+          bT = T.toLowerCase();
+        } else { bT = b.name.toLowerCase()}
+
+
+
+
+
 
         if(aT < bT) {
           return -1;
@@ -36,8 +52,20 @@ export default function Nav() {
       dispatch(changeTernary(false))
     } else if(!ternary){
       temporal.sort((a, b) => {
-        let aT = a.name.toLowerCase();
-        let bT = b.name.toLowerCase();
+
+
+      let aT = "";
+      let bT = "";
+
+      if(a.name.includes('Å')) {
+        let T = a.name.replace('Å', 'A')
+        aT = T.toLowerCase();
+          } else {aT = a.name.toLowerCase()}
+
+      if(b.name.includes("Å")) {
+        let T = b.name.replace('Å', 'A')
+        bT = T.toLowerCase();
+          } else { bT = b.name.toLowerCase()}
 
         if(aT > bT) {
           return -1;
@@ -83,11 +111,12 @@ dispatch(setShowed(temporal));
 
 
 
-const handleSubmit = async (event) => {
+const handleChange = async (event) => {
   event.preventDefault();
-  let value = (event.target["0"].value);
+  let value = (event.target.value);
 
   try {
+    dispatch(setCurrentPage(1));
     const metaData = await axios.get(`http://localhost:3001/countries?name=${value}`)
     dispatch(setShowed(metaData.data))
     setError("");
@@ -104,28 +133,26 @@ const handleSubmit = async (event) => {
 return (
   <nav className={style.nav}>
     <Link to="/" className={style.goBack}>
-      <TiArrowBack className={style.goBack_icon}/>
+      <div className={style.goBack_icon}></div>
     </Link>
-    <div className={style.create_button_container}>
+    <div className={style.buttons_container}>
       <Link to="/form">
-        <div className={style.button_icon}>
-          <label className={style.create_button}>Create a Trip</label>
-        </div>
+        <div className={style.create_button}>Create a Trip</div>
       </Link>
       <div className={style.order_container}>
-          <label className={style.order_title}>Ordenar:</label>
+          <label className={style.order_title}>Ordenar paises por:</label>
           <div className={style.order_select}>
-            <div  onClick={() => callAlfa(ternary)} className={style.order_alfa} >Alfabetico</div>
+            <div data-testid="button" onClick={() => callAlfa(ternary)} className={style.order_alfa} >Nombre</div>
             <div  onClick={() => callPopulation(ternary)} className={style.order_popu} >Poblacion</div>
           </div>
       </div>
     </div>
-    <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
-      <MdTravelExplore className={style.search_icon}/>
+    <form className={style.form} onChange={(e) => handleChange(e)}>
+      <div className={style.search_icon}></div>
       <input type="search" placeholder="Busca tu pais" className={ error && style.error_input}  ></input>
       {error? <label className={style.error_message}>{error}</label> : null}
     </form>
-    <FaFly className={style.logo}/>
+    <div className={style.logo}></div>
 
   </nav>
 )
