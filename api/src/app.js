@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
+const path = require('path')
 
 require('./db.js');
 
@@ -23,6 +24,17 @@ server.use((req, res, next) => {
 });
 
 server.use('/', routes);
+
+
+// Server static assets if in production
+if(process.env.NODE_ENV === 'production') {
+  // Set a static folder
+  server.use(express.static('client/build'));
+
+  server.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  });
+}
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
