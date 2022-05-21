@@ -11,7 +11,7 @@ export default function Landing() {
 
 const delay = () => {
       setTimeout(() => {
-        window.location.href = REACT_APP_API || "http://localhost:3000/home";
+        window.location.href = window.location.href + "/home" || "http://localhost:3000/home";
   }, 1000);
 }
 
