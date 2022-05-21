@@ -104,7 +104,7 @@ export default function Form() {
           submit: "Actividad Agregada!"
         })
 
-        axios.post("http://localhost:3001/activities", {
+        axios.post("/activities", {
           name: input.name,
           duration: input.duration,
           difficulty: input.difficulty,

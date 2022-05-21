@@ -1,7 +1,9 @@
 import style from './styles/landing.module.css';
 //import { IoAirplaneSharp } from 'react-icons/io5';
 import { useState, useEffect } from 'react';
-
+const {
+  REACT_APP_API,
+} = process.env;
 
 export default function Landing() {
 
@@ -9,7 +11,7 @@ export default function Landing() {
 
 const delay = () => {
       setTimeout(() => {
-        window.location.href = "http://localhost:3000/home";
+        window.location.href = REACT_APP_API || "http://localhost:3000/home";
   }, 1000);
 }
 

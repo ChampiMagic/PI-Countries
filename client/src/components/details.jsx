@@ -23,7 +23,7 @@ const [loading, setLoading] = useState(false);
 useEffect(() => {
   const axiosPost = async (params) => {
     setLoading(true)
-    const res = await axios.get(`http://localhost:3001/countries/${params.id}`);
+    const res = await axios.get(`/countries/${params.id}`);
 
     setCountry(res.data[0]);
     setLoading(false)

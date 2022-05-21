@@ -117,7 +117,7 @@ const handleChange = async (event) => {
 
   try {
     dispatch(setCurrentPage(1));
-    const metaData = await axios.get(`http://localhost:3001/countries?name=${value}`)
+    const metaData = await axios.get(`/countries?name=${value}`)
     dispatch(setShowed(metaData.data))
     setError("");
   } catch(err) {

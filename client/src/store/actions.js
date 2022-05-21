@@ -54,7 +54,7 @@ export function setShowed(countries) {
 export function getCountries() {
   return async function(dispatch) {
     dispatch(loadingOn());
-    const countries = await axios.get("http://localhost:3001/countries")
+    const countries = await axios.get("/countries")
     dispatch(setCountries(countries.data));
     dispatch(setShowed(countries.data));
     dispatch(loadingOff())
@@ -63,7 +63,7 @@ export function getCountries() {
 
 export function getActivities() {
   return async function(dispatch) {
-    const activities = await axios.get("http://localhost:3001/activities")
+    const activities = await axios.get("/activities")
     dispatch(setActivities(activities.data));
   }
 }
