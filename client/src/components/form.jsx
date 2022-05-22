@@ -1,9 +1,10 @@
 import style from './styles/form.module.css';
-import { useSelector} from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
 //import { TiArrowBack } from "react-icons/ti";
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getCountries } from '../store/actions.js';
 
 
 const validator = (input, pushCountries) => {
@@ -41,6 +42,16 @@ const validator = (input, pushCountries) => {
 
 export default function Form() {
 
+  const dispatch = useDispatch();
+
+  useEffect( () => {
+
+    dispatch(getCountries());
+
+  }, [dispatch])
+
+
+
   const countriesData = useSelector( (state) => state.countries);
   const countries = countriesData.filter( c => {
     if(c.Activities.length !== undefined && c.Activities.length < 6) return true
@@ -74,7 +85,7 @@ export default function Form() {
     if(!event.target.value) {
       rightNow = [];
     } else {
-      rightNow = countries.filter( c => c.name.includes(event.target.value));
+      rightNow = countries.filter( c => c.name.toLowerCase().includes(event.target.value.toLowerCase()));
     }
        setCurrentCountries(rightNow.slice(0, 8));
 
@@ -141,8 +152,8 @@ export default function Form() {
   }
 
 
-const dificultades = ["Principiante", "Amateur", "Normal", "Profesional", "Experto"];
-const temporadas = ["Primavera", "Verano", "Otoño", "Invierno"];
+const dificultades = ["Beginner", "Amateur", "Normal", "Professional", "Expert"];
+const temporadas = ["Spring", "Summer", "Fall", "Winter"];
 
 
   return (
@@ -151,30 +162,30 @@ const temporadas = ["Primavera", "Verano", "Otoño", "Invierno"];
         <div className={style.goBack_icon}></div>
       </Link>
       <div className={style.form_container}>
-        <h1 className={style.title}>Agregar Actividades:</h1>
+        <h1 className={style.title}>Add Activity:</h1>
         <form onChange={(e) => workOnChange(e)} onSubmit={(e) => handleSubmit(e)}>
           <div className={style.section}>
-            <label>Nombre:</label>
+            <label>Name:</label>
             <input type="text" placeholder="Nombre de la actividad" name="name"></input>
             {error.name && <label className={`${style.error} ${style.errorName}`}>{error.name}</label>}
           </div>
           <div className={style.section}>
-            <label>Duracion(hs):</label>
+            <label>Duration(hs):</label>
             <input type="number" placeholder="Duracion en horas" max="4" min="0.5" step="0.5" name="duration"></input>
               {error.duration && <label className={`${style.error} ${style.errorDuration}`}>{error.duration}</label>}
           </div>
           <div className={style.section}>
-            <label>Paises(max. 8):</label>
+            <label>Countries(max. 8):</label>
             <input onChange={(e) => handleSearch(e)} type="search" placeholder="Nombre del Pais" name="search"></input>
               {error.search && <label className={`${style.error} ${style.errorSearch}`}>{error.search}</label>}
           </div>
           <div className={style.section}>
-              <label>Paises Seleccionados:</label>
+              <label>Selected Countries:</label>
             <input type="submit" value="Agregar Actividad" ></input>
             {error.submit && <label className={`${style.error} ${style.errorsubmit}`}>{error.submit}</label>}
           </div>
           <div className={`${style.section} ${style.radio_container}`}>
-            <label>Dificultad:</label>
+            <label>Difficulty:</label>
             {dificultades.map(d => (
               <div key={d} className={style.subRadio_container}>
                   <input type="radio" value={d} name="difficulty"/>
@@ -184,7 +195,7 @@ const temporadas = ["Primavera", "Verano", "Otoño", "Invierno"];
             {error.difficulty && <label className={`${style.error} ${style.errorDifficulty}`}>{error.difficulty}</label>}
           </div>
           <div className={`${style.section} ${style.radio_container}`}>
-            <label>Temporada:</label>
+            <label>Season:</label>
             {temporadas.map(t => (
               <div key={t} className={style.subRadio_container}>
                   <input type="radio" value={t} name="season"/>

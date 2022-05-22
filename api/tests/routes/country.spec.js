@@ -24,6 +24,7 @@ describe('get countries', () => {
   });
   it('should return error message if the country dont exist in bd for bad query request', async () => {
     const res = await request(app).get('/countries/A3S');
+  
     expect(res.error.text).to.equal("Not Found");
   });
 });

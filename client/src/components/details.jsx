@@ -6,6 +6,8 @@ import axios from 'axios';
 
 export default function Details() {
 
+
+
   function separator(numb) {
     if(numb){
       var str = numb.toString().split(".");
@@ -38,7 +40,6 @@ if(loading){
   )
 }
 
-console.log(country.Activities)
 
   return (
     <div className={style.heigthContainer}>
@@ -52,13 +53,13 @@ console.log(country.Activities)
           </div>
           <div className={style.details_container}>
               <div className={style.country_details}>
-                <h2>Detalles:</h2>
+                <h2>Details:</h2>
                 <div>
                   <p>CCA3:</p>
                   <p>{country.id}</p>
                 </div>
                 <div>
-                  <p>Continente:</p>
+                  <p>Continent:</p>
                   <p>{country.continent}</p>
                 </div>
                 <div>
@@ -74,12 +75,12 @@ console.log(country.Activities)
                   <p>{separator(country.area)} Km²</p>
                 </div>
                 <div>
-                  <p>Poblacion:</p>
+                  <p>Population:</p>
                   <p>{country.population}</p>
                 </div>
               </div>
               <div className={style.activities_container}>
-                  <h2>Actividades:</h2>
+                  <h2>Activities:</h2>
                   {country.Activities === undefined || !country.Activities.length? <label className={style.notFound}>Not Activities Found</label> :
 
                     <div className={style.activities_detail_container}>
@@ -90,15 +91,15 @@ console.log(country.Activities)
                                 <p>{a.name}</p>
                               </div>
                               <div>
-                                <p>Dificultad:</p>
+                                <p>Difficulty:</p>
                             <p>{a.difficulty}</p>
                               </div>
                               <div>
-                                <p>Duracion(Hs):</p>
+                                <p>Duration(Hs):</p>
                               <p>{a.duration}</p>
                               </div>
                               <div>
-                                <p>Temporada:</p>
+                                <p>Season:</p>
                               <p>{a.season}</p>
                               </div>
                             </div>

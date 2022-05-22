@@ -32,3 +32,9 @@
   border: solid 1px #ffe200;
   color: #fef086;
 }
+
+#selected {
+  background-color: rgba(255, 226, 0, 0.55);
+  border: solid 1px #ffe200;
+  color: #fef086;
+}

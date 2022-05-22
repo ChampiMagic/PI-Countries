@@ -21,16 +21,16 @@ export default function Paginated({allCards, cardsPerPages, changer, currentPage
   for(let i = 1; i <= Math.ceil(allCards / cardsPerPages); i++) {
     pageNumbers.push(i);
   }
-  
+
 
   return (
 
     <div className={style.buttons_container}>
       {pageNumbers.length === 1 || !pageNumbers.length? null : <button onClick={() => switchPage("prev")} className={style.prevButton}>Prev</button>}
       {pageNumbers?.map( (number) => (
-        <button onClick={() => changer(number)} key={number} className={style.numbersButton}>{number}</button>
+        <button onClick={() => changer(number)} key={number}  className={style.numbersButton}  id={currentPage === number ? style.selected : null } >{number}</button>
       ))}
-      {pageNumbers.length === 1 || !pageNumbers.length? null : <button onClick={() => switchPage("next")} className={style.nextButton}>Next</button>}
+      {pageNumbers.length === 1 || !pageNumbers.length? null : <button onClick={() => switchPage("next")} className={style.nextButton} >Next</button>}
     </div>
 
   )

@@ -115,6 +115,9 @@ const handleChange = async (event) => {
   event.preventDefault();
   let value = (event.target.value);
 
+  console.log(value)
+
+
   try {
     dispatch(setCurrentPage(1));
     const metaData = await axios.get(`/countries?name=${value}`)
@@ -137,19 +140,19 @@ return (
     </Link>
     <div className={style.buttons_container}>
       <Link to="/form">
-        <div className={style.create_button}>Create a Trip</div>
+        <div className={style.create_button}>Create an Activity</div>
       </Link>
       <div className={style.order_container}>
-          <label className={style.order_title}>Ordenar paises por:</label>
+          <label className={style.order_title}>Sort Countries for:</label>
           <div className={style.order_select}>
-            <div data-testid="button" onClick={() => callAlfa(ternary)} className={style.order_alfa} >Nombre</div>
-            <div  onClick={() => callPopulation(ternary)} className={style.order_popu} >Poblacion</div>
+            <div data-testid="button" onClick={() => callAlfa(ternary)} className={style.order_alfa} >Name</div>
+            <div  onClick={() => callPopulation(ternary)} className={style.order_popu} >Population</div>
           </div>
       </div>
     </div>
     <form className={style.form} onChange={(e) => handleChange(e)}>
       <div className={style.search_icon}></div>
-      <input type="search" placeholder="Busca tu pais" className={ error && style.error_input}  ></input>
+      <input type="search" placeholder="Search your country" className={ error && style.error_input}  ></input>
       {error? <label className={style.error_message}>{error}</label> : null}
     </form>
     <div className={style.logo}></div>

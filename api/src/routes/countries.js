@@ -15,10 +15,12 @@ router.get('/',  async (req, res) => {
 
 const { name } = req.query;
 
+
+
 if(name){
 
   const allCountries = await DB();
-  const reqCountries = allCountries.filter( country => country.name.includes(name) )
+  const reqCountries = allCountries.filter( country => country.name.toLowerCase().includes(name.toLowerCase()) )
   if(reqCountries.length){
     res.status(200).send(reqCountries);
   } else {
@@ -53,7 +55,7 @@ router.get('/:code',  async (req, res) => {
         },
         include: Activity,
       })
-      if(country){
+      if(country.id){
           res.status(200).send(country);
       } else {res.status(404).send("Not Found")}
 

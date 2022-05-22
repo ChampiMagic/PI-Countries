@@ -1,26 +1,24 @@
 import style from './styles/landing.module.css';
 //import { IoAirplaneSharp } from 'react-icons/io5';
-import { useState, useEffect } from 'react';
-const {
-  REACT_APP_API,
-} = process.env;
+import { useEffect, useState } from 'react';
+
 
 export default function Landing() {
 
+const [refresh, setRefresh] = useState(1);
 
-
-const delay = () => {
+const delay = (e) => {
       setTimeout(() => {
-        window.location.href = window.location.href + "/home" || "http://localhost:3000/home";
+          e.target.checked = false;
+        window.location.href = window.location.href + "home"
   }, 1000);
 }
-
 
 
   return (
     <div  className={style.hightContainer}>
 
-        <label data-testid="landing_button" onClick={() => delay()} className={style.button_container}>
+        <label data-testid="landing_button" onClick={(e) => delay(e)} className={style.button_container}>
               <input type="checkbox" ></input>
               <p className={style.title}>TAKE OFF</p>
               <div className={style.icon}>
