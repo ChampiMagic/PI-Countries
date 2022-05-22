@@ -93,6 +93,13 @@ export default function Form() {
 
   const handleSubmit = (event) => {
 
+    if(pushCountries.length) {
+      let temp = error;
+       delete temp.search
+      setError(temp)
+    }
+
+
     function isObjectEmpty(obj) {
       for(const prop in obj){
         if(obj.hasOwnProperty(prop)) return false
@@ -127,6 +134,9 @@ export default function Form() {
   }
 
   const addCountry = (event) => {
+    let searchInput = document.getElementsByName("search")
+    searchInput[0].value = "";
+    workOnChange({target: searchInput[0]});
     const selected = countries.find( c => c.name === event.target.id);
     if(selectedCountries.length <= 7 && !selectedCountries.includes(selected)) {
       setSelectedCountries([...selectedCountries, selected]);
