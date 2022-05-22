@@ -86,7 +86,12 @@ export default function Form() {
       rightNow = [];
     } else {
       rightNow = countries.filter( c => {
-        if(c.name.toLowerCase().includes(event.target.value.toLowerCase()) && !currentCountries.includes(c.name)) return true
+        if(c.name.toLowerCase().includes(event.target.value.toLowerCase())){
+          for(const country of currentCountries) {
+            if(country.name === c.name) return false
+          }
+          return true
+        }
       });
     }
        setCurrentCountries(rightNow.slice(0, 8));
