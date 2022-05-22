@@ -85,7 +85,9 @@ export default function Form() {
     if(!event.target.value) {
       rightNow = [];
     } else {
-      rightNow = countries.filter( c => c.name.toLowerCase().includes(event.target.value.toLowerCase()));
+      rightNow = countries.filter( c => {
+        if(c.name.toLowerCase().includes(event.target.value.toLowerCase()) && !currentCountries.includes(c.name)) return true
+      });
     }
        setCurrentCountries(rightNow.slice(0, 8));
 
@@ -134,9 +136,7 @@ export default function Form() {
   }
 
   const addCountry = (event) => {
-    let searchInput = document.getElementsByName("search")
-    searchInput[0].value = "";
-    workOnChange({target: searchInput[0]});
+
     const selected = countries.find( c => c.name === event.target.id);
     if(selectedCountries.length <= 7 && !selectedCountries.includes(selected)) {
       setSelectedCountries([...selectedCountries, selected]);
