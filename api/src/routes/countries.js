@@ -55,7 +55,7 @@ router.get('/:code',  async (req, res) => {
         },
         include: Activity,
       })
-      if(country){
+      if(country){ 
           res.status(200).send(country);
       } else {res.status(404).send("Not Found")}
 
