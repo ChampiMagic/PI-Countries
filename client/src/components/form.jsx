@@ -87,7 +87,7 @@ export default function Form() {
     } else {
       rightNow = countries.filter( c => {
         if(c.name.toLowerCase().includes(event.target.value.toLowerCase())){
-          for(const country of currentCountries) {
+          for(const country of selectedCountries) {
             if(country.name === c.name) return false
           }
           return true
