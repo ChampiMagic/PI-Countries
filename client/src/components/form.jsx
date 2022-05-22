@@ -159,12 +159,6 @@ export default function Form() {
 
   const deleteCountry = (event) => {
 
-    if(!pushCountries.length) {
-      let temp = error;
-      temp.search = "one country is required";
-      setError(temp)
-    }
-
 
     const selected = selectedCountries.find( c => c.name === event.target.id);
     const push = pushCountries.filter( c => c !== selected.name);
@@ -175,6 +169,12 @@ export default function Form() {
        }
    const change = selectedCountries.filter( c => c.name !== selected.name)
   setSelectedCountries(change);
+
+  if(!pushCountries.length) {
+    let temp = error;
+    temp.search = "one country is required";
+    setError(temp)
+  }
 
   }
 
