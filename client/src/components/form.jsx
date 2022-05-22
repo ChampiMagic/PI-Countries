@@ -142,11 +142,6 @@ export default function Form() {
 
   const addCountry = (event) => {
 
-      let temp = error;
-      delete temp.search
-      setError(temp)
-
-
     const selected = countries.find( c => c.name === event.target.id);
     if(selectedCountries.length <= 7 && !selectedCountries.includes(selected)) {
       setSelectedCountries([...selectedCountries, selected]);
@@ -170,11 +165,7 @@ export default function Form() {
    const change = selectedCountries.filter( c => c.name !== selected.name)
   setSelectedCountries(change);
 
-  if(!pushCountries.length) {
-    let temp = error;
-    temp.search = "one country is required";
-    setError(temp)
-  }
+
 
   }
 
