@@ -23,7 +23,7 @@ export default function Card({name, continent, image, population}) {
     </figure>
 
     <h3>{continent}</h3>
-    <h3>Population: {separator(population)}</h3>
+    <h3>Population: {population ? separator(population) : 0}</h3>
 
     </div>
   )
