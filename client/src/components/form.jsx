@@ -100,10 +100,19 @@ export default function Form() {
 
   const handleSubmit = (event) => {
 
+console.log(pushCountries)
     if(pushCountries.length) {
-      let temp = error;
-       delete temp.search
-      setError(temp)
+      if(isObjectEmpty(input)) {
+        let temp = error;
+         delete temp.search
+         delete temp.submit
+        setError(temp)
+      } else {
+        let temp = error;
+         delete temp.search
+        setError(temp)
+      }
+
     }
 
 
