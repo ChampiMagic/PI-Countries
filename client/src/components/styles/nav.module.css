@@ -140,6 +140,7 @@ background: currentColor
 .order_alfa:hover, .order_popu:hover {
   color: #ffe200;
   border: 1px solid #ffe200;
+  cursor: pointer;
 }
 
 

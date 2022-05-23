@@ -20,6 +20,7 @@ const filter = () => {
   const inputsCheckbox = [...document.getElementsByName("continent")];
   const trueInputsC = inputsCheckbox.filter( (e) => e.checked === true);
 
+
   if(trueInputsR[0].value === "all" && !trueInputsC.length) {
 
       dispatch(setShowed(countries));
@@ -87,7 +88,7 @@ const c = countries.filter( c => {
   const showed = showedCountries.map( c => c.name);
   if(!showed.includes(c.name)) return true
 })
-//console.log(c);
+
 
 
   return (

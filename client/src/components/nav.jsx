@@ -112,10 +112,21 @@ dispatch(setShowed(temporal));
 
 
 const handleChange = async (event) => {
+  const inputsRadio = [...document.getElementsByName("activity")];
+  for(const input of inputsRadio) {
+    if(input.value === "all") {input.checked = true}
+    else { input.checked = false}
+  }
+  const inputsCheckbox = [...document.getElementsByName("continent")];
+  for(const input of inputsCheckbox) {
+    input.checked = false;
+  }
+
+
   event.preventDefault();
   let value = (event.target.value);
 
-  console.log(value)
+
 
 
   try {
@@ -126,6 +137,9 @@ const handleChange = async (event) => {
   } catch(err) {
     console.log(err);
     setError(err.response.data);
+
+  }
+  if(!value){
 
   }
 }
