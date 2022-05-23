@@ -66,7 +66,7 @@ const start = async () => {
         population: country.population,
       })
 
-    })
+    }) 
 
   } catch(err) {
     console.log(err)
