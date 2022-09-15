@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
-import 'dotenv/config'
+
 
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 
