@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
-//require('dotenv').config({ path: __dirname + '/client/.env' })
+import 'dotenv/config'
 
 axios.defaults.baseURL = process.env.API_URL || "http://localhost:3001";
 
