@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_CONNECTION,
+  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME,
 } = process.env;
 
 let sequelize =
@@ -31,7 +31,7 @@ let sequelize =
         ssl: true,
       })
     : new Sequelize(
-        `${DB_CONNECTION}`,
+        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
         { logging: false, native: false }
       );
 const basename = path.basename(__filename);
